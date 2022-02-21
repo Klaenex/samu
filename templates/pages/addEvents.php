@@ -1,6 +1,6 @@
-<div class="page page_addEvent">
-    <div class="arrow_container">
-        <img src="./images/arrow-left.svg" alt="back last menu">
+<div class="page page_add_event">
+    <div class="wrapper wrapper_arrow">
+        <img src="./images/arrow-left.svg" alt="back last menu" class="img img-arrow">
     </div>
     <h2 class="title">Ajouter un évènement</h2>
     <div class="wrapper wrapper_input">
@@ -18,7 +18,7 @@
         </div>
 
         <div class="wrapper wrapper_input">
-            <label for="name">Nom</label>
+            <label for="name_add_event">Nom</label>
             <input type="text" name="name_add_event" id="name_add_event" placeholder="Nom" required>
         </div>
 

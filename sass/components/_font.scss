@@ -1,7 +1,9 @@
 html {
   font-size: 100%;
+}
+body {
   font: $f-textR;
-  color: $c-primary;
+  color: $c-primary !important;
 }
 
 .title {

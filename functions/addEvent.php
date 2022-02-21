@@ -4,16 +4,26 @@ require './db.php';
 require '../config.php';
 session_start();
 
-$fileName = $_FILES['img_add_event']['name'];
-$fileTmpName = $_FILES['img_add_event']['tmp_name'];
-$fileSize = $_FILES['img_add_event']['size'];
 
-if ($fileName == "") {
-    die(error('Veuillez choisir une image'));
+
+$imgHidden = $_POST['img_hidden_add_event'];
+if ($imgHidden != '') {
+    $fileName = $imgHidden;
+} else {
+    $fileName = $_FILES['img_add_event']['name'];
+    $fileTmpName = $_FILES['img_add_event']['tmp_name'];
+    $fileSize = $_FILES['img_add_event']['size'];
+    if ($fileName == "") {
+        die(error('Veuillez choisir une image'));
+    }
+    if ($fileSize >= 10000000) {
+        die(error('Le fichier est trop volumineux'));
+    }
 }
-if ($fileSize >= 10000000) {
-    die(error('Le fichier est trop volumineux'));
-}
+
+
+
+
 
 
 
@@ -53,8 +63,18 @@ if (!empty($name) && !empty($description) && !empty($ageMin) && !empty($ageMax))
             $sql = "INSERT INTO event_images (event_id, img_name) VALUES ('$eventId', '$fileName')";
             $req = mysqli_query($db, $sql);
             if ($req) {
-                move_uploaded_file($fileTmpName, $folder);
                 success('Evénement ajouté');
+                if ($imgHidden == '') {
+                    move_uploaded_file($fileTmpName, $folder);
+
+                    if ($save == 1) {
+                        $sql = "INSERT INTO event_saves (event_id) VALUES ('$eventId')";
+                        $req = mysqli_query($db, $sql);
+                        if (!$req) {
+                            error('Erreur lors de la sauvegarde');
+                        }
+                    }
+                }
             } else {
                 error('Erreur lors de l\'ajout de l\'image');
             }

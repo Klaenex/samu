@@ -74,6 +74,7 @@ body {
 }
 
 .wrapper {
+  display: block;
   &_input {
     display: flex;
     flex-direction: column;
@@ -83,7 +84,7 @@ body {
       gap: 8px;
     }
   }
-}
-
-.test {
+  &_arrow {
+    width: max-content;
+  }
 }

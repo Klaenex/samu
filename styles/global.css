@@ -339,8 +339,11 @@ template {
 
 html {
   font-size: 100%;
+}
+
+body {
   font: 300 1rem "aller", sans-serif;
-  color: #21355e;
+  color: #21355e !important;
 }
 
 .title {
@@ -432,6 +435,9 @@ body {
   gap: 16px;
 }
 
+.wrapper {
+  display: block;
+}
 .wrapper_input {
   display: flex;
   flex-direction: column;
@@ -440,6 +446,9 @@ body {
   display: flex;
   flex-direction: row;
   gap: 8px;
+}
+.wrapper_arrow {
+  width: max-content;
 }
 
 .button_burger {
@@ -496,6 +505,11 @@ body {
   bottom: 0;
   width: 100%;
   transform: rotate(-90deg);
+}
+
+.img {
+  display: block;
+  max-width: 100%;
 }
 
 /*# sourceMappingURL=global.css.map */

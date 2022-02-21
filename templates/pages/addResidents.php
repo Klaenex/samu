@@ -1,6 +1,6 @@
-<div class="page page_addEvent">
-    <div class="arrow_container">
-        <img src="./images/arrow-left.svg" alt="back last menu">
+<div class="page page_add_residents">
+    <div class="wrapper wrapper_arrow">
+        <img src="./images/arrow-left.svg" alt="back last menu" class="img img-arrow">
     </div>
     <h2 class="title">Ajouter un résidents</h2>
     <form class="form" method="post" data-form="add_resident" id="add_resident">
