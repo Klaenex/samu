@@ -9,6 +9,32 @@ menu.addEventListener("click", function () {
   burger.classList.toggle("burger-on");
 });
 
+let linkPage = document.querySelectorAll(".link-page");
+linkPage.forEach(function (link) {
+  link.addEventListener("click", function () {
+    let dataPage = link.getAttribute("data-page");
+    let page = document.querySelectorAll(".page");
+    page.forEach(function (el) {
+      console.log(el);
+      if (el.getAttribute("data-page") == dataPage) {
+        el.classList.add("page-on");
+      } else {
+        el.classList.remove("page-on");
+      }
+    });
+  });
+});
+
+let backPage = document.querySelectorAll(".wrapper_arrow");
+backPage.forEach(function (back) {
+  back.addEventListener("click", function () {
+    let page = document.querySelectorAll(".page");
+    page.forEach(function (el) {
+      el.classList.remove("page-on");
+    });
+  });
+});
+
 // sendForm
 document.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -76,7 +102,9 @@ if (eventSaved) {
     });
 
     eventSaved.addEventListener("change", function () {
-      let idEvent = eventSaved.value;
+      console.log(eventSaved.value);
+      let idEvent = `id=${eventSaved.value}`;
+
       if (idEvent != 0) {
         let url = "./functions/getFormEventSave.php";
         getResponse(url, idEvent).then((data) => {
@@ -120,5 +148,79 @@ if (eventImgPreview) {
       let imgPreview = document.querySelector("#img_preview_add_event");
       imgPreview.innerHTML = `<img class="img img-preview" src="${reader.result}" alt="${file.name}" />`;
     };
+  });
+}
+
+let listEvent = document.querySelector("#list_event");
+if (listEvent) {
+  let url = "./functions/getEventByCenter.php";
+
+  getResponse(url).then((data) => {
+    console.log(data);
+    data.events.forEach((event) => {
+      let eventLi = document.createElement("li");
+      eventLi.classList.add("wrapper");
+      eventLi.classList.add("wrapper_list-event");
+      eventLi.setAttribute("data-event-name", event.name);
+      eventLi.innerHTML = `
+      <div class="list_event-name" data-id="${event.id}">${event.name}</div>
+      <div>
+        <button class="button button_modify-event" data-id="${event.id}">Modifier</button>
+      </div>`;
+      listEvent.appendChild(eventLi);
+    });
+  });
+}
+
+let searchEvent = document.querySelector("#list_event-search");
+if (searchEvent) {
+  searchEvent.addEventListener("keyup", function () {
+    let searchValue = searchEvent.value.toLowerCase();
+    let listEvent = document.querySelectorAll(".wrapper_list-event");
+    listEvent.forEach((event) => {
+      let name = event.getAttribute("data-event-name").toLowerCase();
+      if (!name.includes(searchValue)) {
+        event.style.display = "none";
+      } else {
+        event.style.display = "flex";
+      }
+    });
+  });
+}
+
+let listResidents = document.querySelector("#list_resident");
+if (listResidents) {
+  let url = "./functions/getResidentByCenter.php";
+  getResponse(url).then((data) => {
+    console.log(data);
+    data.users.forEach((user) => {
+      let userLi = document.createElement("li");
+      userLi.classList.add("wrapper");
+      userLi.classList.add("wrapper_list-resident");
+      userLi.setAttribute("data-user-name", user.name + " " + user.first_name);
+      userLi.innerHTML = `
+      <div class="list_resident-name" data-id="${user.id}">${user.name} ${user.first_name}</div>
+      <div>
+        <button class="button button_modify-resident" data-id="${user.id}">Modifier</button>
+      </div>`;
+      listResidents.appendChild(userLi);
+    });
+  });
+}
+
+let searchResident = document.querySelector("#list_resident-search");
+if (searchResident) {
+  searchResident.addEventListener("keyup", function () {
+    let searchValue = searchResident.value.toLowerCase();
+
+    let listResident = document.querySelectorAll(".wrapper_list-resident");
+    listResident.forEach((resident) => {
+      let name = resident.getAttribute("data-user-name").toLowerCase();
+      if (!name.includes(searchValue)) {
+        resident.style.display = "none";
+      } else {
+        resident.style.display = "flex";
+      }
+    });
   });
 }

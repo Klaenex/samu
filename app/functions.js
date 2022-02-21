@@ -7,11 +7,11 @@ export async function sendForm(form, url) {
   return response.json();
 }
 
-export async function getResponse(url, id) {
-  if (id) {
+export async function getResponse(url, data) {
+  if (data) {
     const response = await fetch(url, {
       method: "POST",
-      body: `id=${id}`,
+      body: data,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },

@@ -65,6 +65,9 @@ body {
   margin: 0;
   padding: 0;
 }
+.nav_link {
+  cursor: pointer;
+}
 .form {
   display: flex;
   justify-content: center;
@@ -86,5 +89,56 @@ body {
   }
   &_arrow {
     width: max-content;
+  }
+  &_list-event {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &_list-resident {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+  }
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  &_event-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  &_event-name {
+    width: 100%;
+  }
+  &_resident-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  &_event-name {
+    width: 100%;
+  }
+}
+
+.page {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 32px 16px;
+  background-color: white;
+  z-index: 20;
+  overflow: scroll;
+  transform: translateX(-125vw);
+  transition: transform 0.3s ease;
+  &-on {
+    transform: translateX(0);
   }
 }

@@ -1,5 +1,5 @@
-<div class="page page_add_event" data-page="add_event">
-    <div class="wrapper wrapper_arrow" data-page="add_event">
+<div class="page page_add_event" data-page="modify_event">
+    <div class="wrapper wrapper_arrow" data-page="modify_event">
         <img src="./images/arrow-left.svg" alt="back last menu" class="img img-arrow">
     </div>
     <h2 class="title">Ajouter un évènement</h2>
@@ -55,11 +55,7 @@
             <label for="art_27_add_event">Art.27</label>
             <input type="checkbox" name="art_27_add_event" id="art_27_add_event">
         </div>
-        <div class="wrapper wrapper_input wrapper_input-checkbox">
-            <label for="save_event">Enregistrer l'évènement</label>
-            <input type="checkbox" name="save_event" id="save_event">
-        </div>
-        <input type="submit" value="Ajouter évènement">
+        <input type="submit" value="Modifier évènement">
     </form>
 
 </div>

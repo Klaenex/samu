@@ -1,5 +1,5 @@
-<div class="page page_add_resident" data-page="add_resident">
-    <div class="wrapper wrapper_arrow" data-page="add_resident">
+<div class="page page_modify_residents" data-page="modify_resident">
+    <div class="wrapper wrapper_arrow" data-page="modify_resident">
         <img src="./images/arrow-left.svg" alt="back last menu" class="img img-arrow">
     </div>
     <h2 class="title">Ajouter un résidents</h2>
@@ -41,6 +41,6 @@
             </select>
         </div>
 
-        <input type="submit" value="Ajouter résident">
+        <input type="submit" value="Modifier un résident">
     </form>
 </div>
