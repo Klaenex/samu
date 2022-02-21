@@ -1,0 +1,26 @@
+{
+  "name": "samu-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sass --watch sass/app.scss:styles/global.css & browser-sync start --proxy 'localhost:8080/samu-new' --files 'styles/*.css' --files 'app/*.js' --files 'templates/*.php' --files 'templates/components/*.php' --files 'templates/pages/*.php' --files '*.php'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Klaenex/samu.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Klaenex/samu/issues"
+  },
+  "homepage": "https://github.com/Klaenex/samu#readme",
+  "dependencies": {
+    "sass": "^1.49.7"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.27.7"
+  }
+}

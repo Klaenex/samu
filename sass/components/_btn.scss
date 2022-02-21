@@ -1,0 +1,57 @@
+.button {
+  &_burger {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border: none;
+    position: relative;
+    padding: 0;
+    z-index: 50;
+    background-color: transparent;
+  }
+}
+.burger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: $c-primary;
+  position: inherit;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+  &:before {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: $c-primary;
+    position: absolute;
+    top: -5px;
+    width: 70%;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+  &:after {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: $c-primary;
+    position: absolute;
+    bottom: -5px;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+
+  &-on {
+    transform: rotate(45deg);
+    &:before {
+      top: 0;
+      width: 0;
+    }
+    &:after {
+      bottom: 0;
+      width: 100%;
+      transform: rotate(-90deg);
+    }
+  }
+}
