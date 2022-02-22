@@ -7,31 +7,11 @@ menu.addEventListener("click", function () {
   nav.classList.toggle("nav-on");
   let burger = document.querySelector(".burger");
   burger.classList.toggle("burger-on");
-});
-
-let linkPage = document.querySelectorAll(".link-page");
-linkPage.forEach(function (link) {
-  link.addEventListener("click", function () {
-    let dataPage = link.getAttribute("data-page");
-    let page = document.querySelectorAll(".page");
-    page.forEach(function (el) {
-      console.log(el);
-      if (el.getAttribute("data-page") == dataPage) {
-        el.classList.add("page-on");
-      } else {
-        el.classList.remove("page-on");
-      }
-    });
-  });
-});
-
-let backPage = document.querySelectorAll(".wrapper_arrow");
-backPage.forEach(function (back) {
-  back.addEventListener("click", function () {
-    let page = document.querySelectorAll(".page");
-    page.forEach(function (el) {
-      el.classList.remove("page-on");
-    });
+  let page = document.querySelectorAll(".page");
+  page.forEach(function (item) {
+    if (item.classList.contains("page-on")) {
+      item.classList.remove("page-on");
+    }
   });
 });
 
@@ -73,6 +53,27 @@ document.addEventListener("submit", function (e) {
         }
       });
       break;
+    case "modify_resident":
+      let modifyResident = document.querySelector("#modify_resident");
+      let urlModifyResident = "./functions/modifyResident.php";
+      sendForm(modifyResident, urlModifyResident).then((data) => {
+        if (data.success) {
+          console.log(data.success);
+        } else {
+          console.log(data.error);
+        }
+      });
+      break;
+    case "modify_event":
+      let modifyEvent = document.querySelector("#modify_event");
+      let urlModifyEvent = "./functions/modifyEvent.php";
+      sendForm(modifyEvent, urlModifyEvent).then((data) => {
+        if (data.success) {
+          console.log(data.success);
+        } else {
+          console.log(data.error);
+        }
+      });
   }
 });
 
@@ -154,9 +155,7 @@ if (eventImgPreview) {
 let listEvent = document.querySelector("#list_event");
 if (listEvent) {
   let url = "./functions/getEventByCenter.php";
-
   getResponse(url).then((data) => {
-    console.log(data);
     data.events.forEach((event) => {
       let eventLi = document.createElement("li");
       eventLi.classList.add("wrapper");
@@ -192,7 +191,6 @@ let listResidents = document.querySelector("#list_resident");
 if (listResidents) {
   let url = "./functions/getResidentByCenter.php";
   getResponse(url).then((data) => {
-    console.log(data);
     data.users.forEach((user) => {
       let userLi = document.createElement("li");
       userLi.classList.add("wrapper");
@@ -201,9 +199,34 @@ if (listResidents) {
       userLi.innerHTML = `
       <div class="list_resident-name" data-id="${user.id}">${user.name} ${user.first_name}</div>
       <div>
-        <button class="button button_modify-resident" data-id="${user.id}">Modifier</button>
+        <button class="button button_modify-resident link-page" data-id="${user.id}" data-page="modify_resident">Modifier</button>
       </div>`;
       listResidents.appendChild(userLi);
+    });
+
+    //MODIFY RESIDENT
+    let button = document.querySelectorAll(".button_modify-resident");
+    button.forEach((button) => {
+      button.addEventListener("click", function () {
+        let id = this.getAttribute("data-id");
+        id = `id=${id}`;
+        let url = "./functions/getResidentById.php";
+        getResponse(url, id).then((data) => {
+          let user = data.user;
+
+          document.querySelector("#id_hidden_modify_resident").value = user.id;
+          document.querySelector("#email_modify_resident").value = user.email;
+          document.querySelector("#name_modify_resident").value = user.name;
+          document.querySelector("#firstname_modify_resident").value =
+            user.first_name;
+          document.querySelector("#nationality_modify_resident").value =
+            user.nationality;
+          document.querySelector("#dob_modify_resident").value =
+            user.date_of_birth;
+          document.querySelector("#gender_modify_resident").value = user.gender;
+          document.querySelector("#stib_modify_resident").value = user.stib;
+        });
+      });
     });
   });
 }
@@ -224,3 +247,30 @@ if (searchResident) {
     });
   });
 }
+
+document.addEventListener("click", function () {
+  const linkPage = document.querySelectorAll(".link-page");
+  linkPage.forEach(function (link) {
+    link.addEventListener("click", function () {
+      let dataPage = link.getAttribute("data-page");
+      let page = document.querySelectorAll(".page");
+      page.forEach(function (el) {
+        if (el.getAttribute("data-page") == dataPage) {
+          el.classList.add("page-on");
+        } else {
+          el.classList.remove("page-on");
+        }
+      });
+    });
+  });
+});
+
+let backPage = document.querySelectorAll(".wrapper_arrow");
+backPage.forEach(function (back) {
+  back.addEventListener("click", function () {
+    let page = document.querySelectorAll(".page");
+    page.forEach(function (el) {
+      el.classList.remove("page-on");
+    });
+  });
+});

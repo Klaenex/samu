@@ -30,7 +30,6 @@ if (!isset($_SESSION['user'])) {
             $email = $response->email;
             $sql = "SELECT * FROM `users_admin` WHERE `email` = '$email'";
             $req = mysqli_query($db, $sql);
-            echo mysqli_num_rows($req);
             if (mysqli_num_rows($req) > 0) {
                 $user = mysqli_fetch_assoc($req);
                 $_SESSION['user'] = $user;
