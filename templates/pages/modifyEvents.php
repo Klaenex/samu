@@ -1,59 +1,52 @@
-<div class="page page_add_event" data-page="modify_event">
+<div class="page page_modify_event" data-page="modify_event">
     <div class="wrapper wrapper_arrow" data-page="modify_event">
         <img src="./images/arrow-left.svg" alt="back last menu" class="img img-arrow">
     </div>
-    <h2 class="title">Ajouter un évènement</h2>
-    <div class="wrapper wrapper_input">
-        <label for="event_saves">Événements enregistrer</label>
-        <select name="event_saves" id="event_saves">
+    <h2 class="title">Modifier un évènement</h2>
 
-        </select>
-    </div>
-    <form class="form" id="add_event" method="post" enctype="multipart/form-data" data-form="add_event">
+    <form class="form" id="modify_event" method="post" enctype="multipart/form-data" data-form="modify_event">
         <div class="wrapper wrapper_input">
-            <label for="img_add_event">Photo</label>
-            <input type="file" name="img_add_event" id="img_add_event" accept="image/*" required>
-            <input type="text" name="img_hidden_add_event" id="img_hidden_add_event" hidden>
-            <span id="img_preview_add_event"></span>
+            <label for="img_modify_event">Photo</label>
+            <input type="file" name="img_modify_event" id="img_modify_event" accept="image/*" required>
+            <span id="img_preview_modify_event"></span>
         </div>
 
         <div class="wrapper wrapper_input">
-            <label for="name_add_event">Nom</label>
-            <input type="text" name="name_add_event" id="name_add_event" placeholder="Nom" required>
+            <label for="name_modify_event">Nom</label>
+            <input type="text" name="name_modify_event" id="name_modify_event" placeholder="Nom" required>
         </div>
 
         <div class="wrapper wrapper_input">
-            <label for="description_add_event">Description</label>
-            <textarea name="description_add_event" id="description_add_event" cols="30" rows="10" placeholder="Description" required></textarea>
-
+            <label for="description_modify_event">Description</label>
+            <textarea name="description_modify_event" id="description_modify_event" cols="30" rows="10" placeholder="Description" required></textarea>
         </div>
         <div class="wrapper wrapper_input">
-            <label for="place_add_event">Lieux</label>
-            <input type="text" name="place_add_event" id="place_add_event" placeholder="Lieux" required>
-        </div>
-
-        <div class="wrapper wrapper_input">
-            <label for="date_add_event">Date</label>
-            <input type="date" name="date_add_event" id="date_add_event">
-        </div>
-        <div class="wrapper wrapper_input">
-            <label for="time_add_event">Heure</label>
-            <input type="time" name="time_add_event" id="time_add_event">
+            <label for="place_modify_event">Lieux</label>
+            <input type="text" name="place_modify_event" id="place_modify_event" placeholder="Lieux" required>
         </div>
 
         <div class="wrapper wrapper_input">
-            <label for="age_min_add_event">Age min.</label>
-            <input type="number" name="age_min_add_event" id="age_min_add_event" placeholder="Age min." required>
+            <label for="date_modify_event">Date</label>
+            <input type="date" name="date_modify_event" id="date_modify_event">
+        </div>
+        <div class="wrapper wrapper_input">
+            <label for="time_modify_event">Heure</label>
+            <input type="time" name="time_modify_event" id="time_modify_event">
         </div>
 
         <div class="wrapper wrapper_input">
-            <label for="age_max_add_event">Age max.</label>
-            <input type="number" name="age_max_add_event" id="age_max_add_event" placeholder="Age max." required>
+            <label for="age_min_modify_event">Age min.</label>
+            <input type="number" name="age_min_modify_event" id="age_min_modify_event" placeholder="Age min." required>
+        </div>
+
+        <div class="wrapper wrapper_input">
+            <label for="age_max_modify_event">Age max.</label>
+            <input type="number" name="age_max_modify_event" id="age_max_modify_event" placeholder="Age max." required>
         </div>
 
         <div class="wrapper wrapper_input wrapper_input-checkbox">
-            <label for="art_27_add_event">Art.27</label>
-            <input type="checkbox" name="art_27_add_event" id="art_27_add_event">
+            <label for="art_27_modify_event">Art.27</label>
+            <input type="checkbox" name="art_27_modify_event" id="art_27_modify_event">
         </div>
         <input type="submit" value="Modifier évènement">
     </form>

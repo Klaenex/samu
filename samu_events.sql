@@ -102,7 +102,7 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(255) NULL,
   `nationality` varchar(127) NOT NULL,
   `gender` tinyint(4) DEFAULT 0,
   `stib` tinyint(4) DEFAULT 0,
@@ -110,6 +110,16 @@ CREATE TABLE `users` (
   `date_of_birth` date NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+CREATE TABLE `new_password`(
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Déchargement des données de la table `users`
@@ -187,6 +197,10 @@ ALTER TABLE `users`
 ALTER TABLE `users_admin`
   ADD PRIMARY KEY (`id`);
 
+
+  ALTER TABLE `new_password`
+  ADD PRIMARY KEY (`id`);
+
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
@@ -232,6 +246,15 @@ ALTER TABLE `users`
 --
 ALTER TABLE `users_admin`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
+
+
+--
+-- AUTO_INCREMENT pour la table `new_password`
+--
+ALTER TABLE `new_password`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

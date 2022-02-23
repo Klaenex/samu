@@ -168,6 +168,15 @@ if (listEvent) {
       </div>`;
       listEvent.appendChild(eventLi);
     });
+    let button = document.querySelectorAll(".button_modify-event");
+    button.forEach((button) => {
+      button.addEventListener("click", function () {
+        let idEvent = button.getAttribute("data-id");
+        id = `id=${idEvent}`;
+        let url = "./functions/getEventById.php";
+        getResponse(url, id).then((data) => {});
+      });
+    });
   });
 }
 
@@ -213,7 +222,6 @@ if (listResidents) {
         let url = "./functions/getResidentById.php";
         getResponse(url, id).then((data) => {
           let user = data.user;
-
           document.querySelector("#id_hidden_modify_resident").value = user.id;
           document.querySelector("#email_modify_resident").value = user.email;
           document.querySelector("#name_modify_resident").value = user.name;
