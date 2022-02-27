@@ -1,4 +1,4 @@
-export async function sendForm(form, url) {
+export async function sendForm(form, url, data) {
   const formData = new FormData(form);
   const response = await fetch(url, {
     method: "POST",

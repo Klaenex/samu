@@ -109,3 +109,7 @@ dist
 
 
 config.php
+
+
+composer.phar
+/vendor/

@@ -2,18 +2,20 @@
 import { sendForm, getResponse } from "./functions.js";
 
 let menu = document.querySelector(".button_burger");
-menu.addEventListener("click", function () {
-  let nav = document.querySelector(".nav");
-  nav.classList.toggle("nav-on");
-  let burger = document.querySelector(".burger");
-  burger.classList.toggle("burger-on");
-  let page = document.querySelectorAll(".page");
-  page.forEach(function (item) {
-    if (item.classList.contains("page-on")) {
-      item.classList.remove("page-on");
-    }
+if (menu) {
+  menu.addEventListener("click", function () {
+    let nav = document.querySelector(".nav");
+    nav.classList.toggle("nav-on");
+    let burger = document.querySelector(".burger");
+    burger.classList.toggle("burger-on");
+    let page = document.querySelectorAll(".page");
+    page.forEach(function (item) {
+      if (item.classList.contains("page-on")) {
+        item.classList.remove("page-on");
+      }
+    });
   });
-});
+}
 
 // sendForm
 document.addEventListener("submit", function (e) {
@@ -74,6 +76,22 @@ document.addEventListener("submit", function (e) {
           console.log(data.error);
         }
       });
+      break;
+    case "new_password":
+      let newPassword = document.querySelector("#new_password");
+      let urlNewPassword = "./functions/updatePassword.php";
+      let token = window.location.search.split("=")[1];
+      let inputToken = document.querySelector("#token_password");
+      inputToken.value = token;
+
+      sendForm(newPassword, urlNewPassword).then((data) => {
+        if (data.success) {
+          window.location.href = "./index.php";
+        } else {
+          console.log(data.error);
+        }
+      });
+      break;
   }
 });
 
@@ -168,6 +186,15 @@ if (listEvent) {
       </div>`;
       listEvent.appendChild(eventLi);
     });
+    let button = document.querySelectorAll(".button_modify-event");
+    button.forEach((button) => {
+      button.addEventListener("click", function () {
+        let idEvent = button.getAttribute("data-id");
+        id = `id=${idEvent}`;
+        let url = "./functions/getEventById.php";
+        getResponse(url, id).then((data) => {});
+      });
+    });
   });
 }
 
@@ -213,7 +240,6 @@ if (listResidents) {
         let url = "./functions/getResidentById.php";
         getResponse(url, id).then((data) => {
           let user = data.user;
-
           document.querySelector("#id_hidden_modify_resident").value = user.id;
           document.querySelector("#email_modify_resident").value = user.email;
           document.querySelector("#name_modify_resident").value = user.name;

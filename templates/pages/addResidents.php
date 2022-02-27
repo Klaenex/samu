@@ -8,10 +8,7 @@
             <label for="email_add_resident">Email</label>
             <input type="email" name="email_add_resident" id="email_add_resident" placeholder="Email" required>
         </div>
-        <div class="wrapper wrapper_input">
-            <label for="password_add_resident">Mot de passe</label>
-            <input type="password" name="password_add_resident" id="password_add_resident" placeholder="Mot de passe" required>
-        </div>
+
         <div class="wrapper wrapper_input">
             <label for="name_add_resident">Nom</label>
             <input type="text" name="name_add_resident" id="name_add_resident" placeholder="Nom" required>
