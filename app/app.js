@@ -4,6 +4,8 @@ import { sendForm, getResponse } from "./functions.js";
 let menu = document.querySelector(".button_burger");
 if (menu) {
   menu.addEventListener("click", function () {
+    let body = document.querySelector("body");
+    body.classList.toggle("menu_open");
     let nav = document.querySelector(".nav");
     nav.classList.toggle("nav-on");
     let burger = document.querySelector(".burger");
@@ -157,6 +159,8 @@ if (eventSaved) {
   });
 }
 
+//img preview add event
+
 let eventImgPreview = document.querySelector("#img_add_event");
 if (eventImgPreview) {
   eventImgPreview.addEventListener("change", function () {
@@ -165,6 +169,20 @@ if (eventImgPreview) {
     reader.readAsDataURL(file);
     reader.onload = function () {
       let imgPreview = document.querySelector("#img_preview_add_event");
+      imgPreview.innerHTML = `<img class="img img-preview" src="${reader.result}" alt="${file.name}" />`;
+    };
+  });
+}
+
+//img preview modify event
+let imgModifyEvent = document.querySelector("#img_modify_event");
+if (imgModifyEvent) {
+  imgModifyEvent.addEventListener("change", function () {
+    let file = imgModifyEvent.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      let imgPreview = document.querySelector("#img_preview_modify_event");
       imgPreview.innerHTML = `<img class="img img-preview" src="${reader.result}" alt="${file.name}" />`;
     };
   });
@@ -182,17 +200,37 @@ if (listEvent) {
       eventLi.innerHTML = `
       <div class="list_event-name" data-id="${event.id}">${event.name}</div>
       <div>
-        <button class="button button_modify-event" data-id="${event.id}">Modifier</button>
+        <button class="button button_modify-event link-page" data-id="${event.id}" data-page="modify_event">Modifier</button>
       </div>`;
       listEvent.appendChild(eventLi);
     });
+
+    //modify event
     let button = document.querySelectorAll(".button_modify-event");
     button.forEach((button) => {
       button.addEventListener("click", function () {
         let idEvent = button.getAttribute("data-id");
-        id = `id=${idEvent}`;
+        let id = `id=${idEvent}`;
         let url = "./functions/getEventById.php";
-        getResponse(url, id).then((data) => {});
+        getResponse(url, id).then((data) => {
+          let event = data.event;
+          let img = data.eventImg;
+          document.querySelector("#id_hidden_modify_event").value = event.id;
+          document.querySelector("#img_hidden_modify_event").value =
+            img.img_name;
+          document.querySelector("#name_modify_event").value = event.name;
+          document.querySelector("#description_modify_event").value =
+            event.description;
+          document.querySelector("#place_modify_event").value = event.place;
+          document.querySelector("#date_modify_event").value = event.date;
+          document.querySelector("#time_modify_event").value = event.time;
+          document.querySelector("#age_min_modify_event").value = event.age_min;
+          document.querySelector("#age_max_modify_event").value = event.age_max;
+          document.querySelector("#art_27_modify_event").value = event.art_27;
+          let eventImg = document.querySelector("#img_preview_modify_event");
+          let route = "./images/events/" + img.img_name;
+          eventImg.innerHTML = `<img class="img img-preview" src="${route}" alt="${event.img_name}" />`;
+        });
       });
     });
   });
@@ -261,7 +299,6 @@ let searchResident = document.querySelector("#list_resident-search");
 if (searchResident) {
   searchResident.addEventListener("keyup", function () {
     let searchValue = searchResident.value.toLowerCase();
-
     let listResident = document.querySelectorAll(".wrapper_list-resident");
     listResident.forEach((resident) => {
       let name = resident.getAttribute("data-user-name").toLowerCase();

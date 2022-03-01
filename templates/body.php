@@ -4,11 +4,11 @@
         require './functions/menuRouter.php';
         ?>
     </header>
-    <div id="pages_router">
-        <?php
-        require './functions/pagesRouter.php';
-        ?>
-    </div>
+
+    <?php
+    require './functions/pagesRouter.php';
+    ?>
+
     <main>
         <?php
         require './functions/mainRouter.php';

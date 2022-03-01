@@ -5,10 +5,13 @@
     <h2 class="title">Modifier un évènement</h2>
 
     <form class="form" id="modify_event" method="post" enctype="multipart/form-data" data-form="modify_event">
+        <input type="hidden" name="id_hidden_modify_event" id="id_hidden_modify_event">
         <div class="wrapper wrapper_input">
             <label for="img_modify_event">Photo</label>
-            <input type="file" name="img_modify_event" id="img_modify_event" accept="image/*" required>
+            <input type="file" name="img_modify_event" id="img_modify_event" accept="image/*">
+            <input type="hidden" name="img_hidden_modify_event" id="img_hidden_modify_event">
             <span id="img_preview_modify_event"></span>
+
         </div>
 
         <div class="wrapper wrapper_input">
