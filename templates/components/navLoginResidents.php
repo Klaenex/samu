@@ -6,6 +6,8 @@
             <label for="password_login">Mot de passe</label>
             <input type="password" name="password_login" id="password_login" required>
             <input type="submit" value="Se connecter">
+            <p class="nav_link link-page forget" data-page="modify_password">J'ai oublier mon mot de passe!</p>
         </form>
+
     </div>
 </nav>

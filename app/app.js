@@ -94,6 +94,18 @@ document.addEventListener("submit", function (e) {
         }
       });
       break;
+    case "modify_password":
+      let modifyPassword = document.querySelector("#modify_password");
+      let urlModifyPassword = "./functions/modifyPassword.php";
+      console.log("test");
+      sendForm(modifyPassword, urlModifyPassword).then((data) => {
+        if (data.success) {
+          console.log(data.success);
+        } else {
+          console.log(data.error);
+        }
+      });
+      break;
   }
 });
 
@@ -337,3 +349,24 @@ backPage.forEach(function (back) {
     });
   });
 });
+
+let buttonSubscribeEvent = document.querySelectorAll(".button_subscribe_event");
+
+if (buttonSubscribeEvent) {
+  buttonSubscribeEvent.forEach(function (button) {
+    button.addEventListener("click", function () {
+      let id = this.getAttribute("data-event");
+      let url = "./functions/subscribeResident.php";
+      let data = `id=${id}`;
+      getResponse(url, data).then((data) => {
+        if (data.error) {
+          console.log(data.error);
+          button.innerHTML = "S'inscrire";
+        } else {
+          console.log(data.success);
+          button.innerHTML = "Se désinscrire";
+        }
+      });
+    });
+  });
+}

@@ -16,13 +16,11 @@ function emailNewPassword($email, $userId, $db)
     $token = uniqid(sha1(time()));
     $sql = "INSERT INTO new_password (user_id, token ) VALUES ('$userId','$token')";
     $req = mysqli_query($db, $sql);
-    echo (mysqli_error($db));
+    
     if ($req) {
-        //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
 
         try {
-            //Server settings
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
             $mail->SMTPDebug  = 0;

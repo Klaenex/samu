@@ -75,7 +75,8 @@ CREATE TABLE `event_saves` (
 CREATE TABLE `event_subscribers` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `event_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `attending` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

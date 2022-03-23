@@ -14,4 +14,6 @@ if (isset($_SESSION['user'])) {
                 break;
         }
     }
+} else {
+    require './functions/pagesPasswordRecovery.php';
 }

@@ -19,8 +19,6 @@ if ($idUser) {
         $req = mysqli_query($db, $sql);
         $sql = 'DELETE FROM new_password WHERE token="' . $token . '"';
         $req = mysqli_query($db, $sql);
-
-
         $sql = 'SELECT * FROM users WHERE id="' . $idUser['user_id'] . '"';
         $req = mysqli_query($db, $sql);
         $user = mysqli_fetch_assoc($req);
